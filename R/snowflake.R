@@ -15,17 +15,16 @@ create_connection_sf <- function(){
                               ";PWD=", keyring::key_get("snowflake_password"))
 
   con <- DBI::dbConnect(odbc::odbc(), .connection_string = connection_string)
-  DBI::dbSendQuery(con, paste("USE WAREHOUSE", keyring::key_get("snowflake_warehouse")))
-  DBI::dbSendQuery(con, paste0("USE SCHEMA \"", keyring::key_get("snowflake_database"),
-                               "\".\"", keyring::key_get("snowflake_scheme"), "\""))
+  suppressWarnings(DBI::dbSendQuery(con, paste("USE WAREHOUSE", keyring::key_get("snowflake_warehouse"))))
+  suppressWarnings(DBI::dbSendQuery(con, paste0("USE SCHEMA \"", keyring::key_get("snowflake_database"),
+                               "\".\"", keyring::key_get("snowflake_scheme"), "\"")))
   con
 }
 
 run_query <- function(query, file = NA){
   con <- create_connection_sf()
-  if(!is.na(file)){
-
-  }
-  DBI::dbGetQuery(con, query)
+  if(!is.na(file)){}
+  a <- janitor::clean_names(suppressWarnings(DBI::dbGetQuery(con, query)))
   DBI::dbDisconnect(con)
+  return(a)
 }

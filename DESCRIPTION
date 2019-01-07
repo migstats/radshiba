@@ -13,6 +13,7 @@ Imports:
     dplyr,
     ggplot2,
     purrr,
-    magrittr
+    magrittr,
+    usethis
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

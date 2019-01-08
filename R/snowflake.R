@@ -21,10 +21,41 @@ create_connection_sf <- function(){
   con
 }
 
+#' Read the content of a text file
+#'
+#' @param file Location of the file
+#'
+#' @return
+#' @export String
+#'
+#' @examples
+read_query<- function(file){paste(readLines(file), collapse="\n")}
+
+#' Run query
+#'
+#' Execute a query, can be a string or a query from a file.
+#'
+#' @param query Query in a string format
+#' @param file Route of the query
+#'
+#' @return Dataframe
+#' @export
+#'
+#' @examples
 run_query <- function(query, file = NA){
   con <- create_connection_sf()
-  if(!is.na(file)){}
+  if(!is.na(file)){
+    query <- read_query(file)
+  }
   a <- janitor::clean_names(suppressWarnings(DBI::dbGetQuery(con, query)))
   DBI::dbDisconnect(con)
   return(a)
+}
+
+run_queries <- function(folder = "sql/"){
+  all_queries <- list.files(path = folder)
+
+  all_queries %>%
+    purrr::map(~ paste0(folder, .)) %>%
+    purrr::map_df(~ run_query(file = .))
 }

@@ -9,6 +9,9 @@ read_query(file)
 \arguments{
 \item{file}{Location of the file}
 }
+\value{
+String
+}
 \description{
 Read the content of a text file
 }

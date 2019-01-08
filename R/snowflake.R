@@ -6,8 +6,6 @@
 #'
 #' @return
 #' @export
-#'
-#' @examples
 create_connection_sf <- function(){
   connection_string <- paste0("Driver={SnowflakeDSIIDriver};SERVER=",
                               keyring::key_get("snowflake_server"),
@@ -25,10 +23,8 @@ create_connection_sf <- function(){
 #'
 #' @param file Location of the file
 #'
-#' @return
-#' @export String
-#'
-#' @examples
+#' @return String
+#' @export
 read_query<- function(file){paste(readLines(file), collapse="\n")}
 
 #' Run query
@@ -40,8 +36,6 @@ read_query<- function(file){paste(readLines(file), collapse="\n")}
 #'
 #' @return Dataframe
 #' @export
-#'
-#' @examples
 run_query <- function(query, file = NA){
   con <- create_connection_sf()
   if(!is.na(file)){
@@ -52,10 +46,18 @@ run_query <- function(query, file = NA){
   return(a)
 }
 
-run_queries <- function(folder = "sql/"){
+#' Run multiples queries in a single folder
+#'
+#' @param folder Folder with all the queries
+#' @param save Folder to store the results of the queries
+#'
+#' @export
+run_queries <- function(folder = "sql/", save = "data/"){
   all_queries <- list.files(path = folder)
 
   all_queries %>%
     purrr::map(~ paste0(folder, .)) %>%
-    purrr::map_df(~ run_query(file = .))
+    purrr::map(~ run_query(file = .)) %>%
+    purrr::set_names(stringr::str_sub(all_queries, end = -5)) %>%
+    purrr::walk2(names(.), ~ readr::write_csv(x = .x, path = paste0(save, .y, ".csv")))
 }

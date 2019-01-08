@@ -4,10 +4,10 @@
 \alias{setup_project}
 \title{Setup a project}
 \usage{
-setup_project(project_name)
+setup_project(name)
 }
 \arguments{
-\item{project_name}{Name of the project}
+\item{name}{Name of the project}
 }
 \description{
 Setup a project

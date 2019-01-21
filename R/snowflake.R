@@ -36,14 +36,18 @@ read_query<- function(file){paste(readLines(file), collapse="\n")}
 #'
 #' @return Dataframe
 #' @export
-run_query <- function(query, file = NA){
+run_query <- function(query, file = NA, name = NA){
   con <- create_connection_sf()
   if(!is.na(file)){
     query <- read_query(file)
   }
   a <- janitor::clean_names(suppressWarnings(DBI::dbGetQuery(con, query)))
   DBI::dbDisconnect(con)
-  return(a)
+  if(is.na(name)){
+    return(a)
+  } else {
+    readr::write_csv(x = a, path = paste0("data/", name, ".csv"))
+  }
 }
 
 #' Run multiples queries in a single folder

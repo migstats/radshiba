@@ -4,7 +4,7 @@
 \alias{run_query}
 \title{Run query}
 \usage{
-run_query(query, file = NA)
+run_query(query, file = NA, name = NA)
 }
 \arguments{
 \item{query}{Query in a string format}

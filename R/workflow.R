@@ -23,6 +23,10 @@ setup_file <- function(name){
   current_number <- get_current_file_number() %>%
     stringr::str_pad(2, "left", pad = "0")
 
+  if(is.na(current_number)){
+    current_number <- "01"
+    }
+
   dir <- paste0("analysis/", current_number, "-", name, ".R")
 
   file.create(dir)

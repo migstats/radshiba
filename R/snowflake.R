@@ -4,7 +4,7 @@
 #' `snowflake_uid`, `snowflake_password`, `snowflake_warehouse`, `snowflake_database`
 #'  and `snowflake_scheme` with the `keyring` package (`keyring::key_set()`).
 #'
-#' @return
+#' @return Connection
 #' @export
 create_connection_sf <- function(){
   connection_string <- paste0("Driver={SnowflakeDSIIDriver};SERVER=",

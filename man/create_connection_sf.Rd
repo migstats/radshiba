@@ -6,6 +6,9 @@
 \usage{
 create_connection_sf()
 }
+\value{
+Connection
+}
 \description{
 Create connection with snowflake db. Remember to define the variables
 \code{snowflake_uid}, \code{snowflake_password}, \code{snowflake_warehouse}, \code{snowflake_database}

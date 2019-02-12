@@ -32,10 +32,12 @@ setup_file <- function(name){
   file.create(dir)
 
   file_conn <- file(dir)
-  writeLines(c("library(tidyverse)","library(janitor)", "library(skimr)"), file_conn)
+  writeLines(c("library(tidyverse)", "library(janitor)", "library(skimr)", "library(extrafont)"), file_conn)
   close(file_conn)
 
   file.edit(dir)
+
+  source(dir)
 }
 
 get_current_file_number <- function(){

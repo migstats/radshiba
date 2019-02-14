@@ -32,7 +32,8 @@ setup_file <- function(name){
   file.create(dir)
 
   file_conn <- file(dir)
-  writeLines(c("library(tidyverse)", "library(janitor)", "library(skimr)", "library(extrafont)"), file_conn)
+  writeLines(c("library(tidyverse)", "library(janitor)", "library(skimr)",
+               "library(extrafont)", "theme_set(theme_mt())"), file_conn)
   close(file_conn)
 
   file.edit(dir)

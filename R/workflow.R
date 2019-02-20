@@ -48,3 +48,17 @@ get_current_file_number <- function(){
     as.integer() %>%
     `+`(1)
 }
+
+#' Setup a sql file
+#'
+#' @param name Name of the file
+#'
+#' @export
+setup_sql <- function(name){
+
+  dir <- paste0("analysis/", name, ".sql")
+
+  file.create(dir)
+
+  file.edit(dir)
+}

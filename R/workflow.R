@@ -56,7 +56,7 @@ get_current_file_number <- function(){
 #' @export
 setup_sql <- function(name){
 
-  dir <- paste0("analysis/", name, ".sql")
+  dir <- paste0("sql/", name, ".sql")
 
   file.create(dir)
 

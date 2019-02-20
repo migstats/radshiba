@@ -21,6 +21,7 @@ theme_mt <- function(base_size = 18){
       legend.text = element_text(family = "Lucida Sans Unicode", size = 10),
       legend.margin = margin(l = -0.5, unit = "cm"),
       strip.background = element_rect(colour = "black", fill = "red4"),
-      strip.text = element_text(family = "Bebas Neue")
+      strip.text = element_text(family = "Bebas Neue", colour = "white", size = 16,
+                                margin = margin(t = 3, r = 0, b = 4, l = 0))
     )
 }

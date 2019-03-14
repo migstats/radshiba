@@ -3,6 +3,7 @@
 export("%>%")
 export(create_connection_sf)
 export(dens)
+export(df_to_enviroment)
 export(read_query)
 export(run_queries)
 export(run_query)

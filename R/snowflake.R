@@ -16,7 +16,7 @@ create_connection_sf <- function(){
   suppressWarnings(DBI::dbSendQuery(con, paste("USE WAREHOUSE", keyring::key_get("snowflake_warehouse"))))
   suppressWarnings(DBI::dbSendQuery(con, paste0("USE SCHEMA \"", keyring::key_get("snowflake_database"),
                                "\".\"", keyring::key_get("snowflake_scheme"), "\"")))
-  suppressWarnings(DBI::dbSendQuery(con, paste0("USE ROLA \"", keyring::key_get("snowflake_role"))))
+  suppressWarnings(DBI::dbSendQuery(con, paste0("USE ROLE \"", keyring::key_get("snowflake_role"))))
   con
 }
 
